@@ -1,4 +1,4 @@
-import { Schema } from "../..";
+import { Schema } from "..";
 import { expect } from "./utils/assert";
 
 expect(Schema.Union([Schema.Number(), Schema.String()])).toBeResolved<number | string>();

@@ -18,8 +18,8 @@
     }
   },
   "scripts": {
-    "test": "mocha --require ts-node/register src/**/*.test.ts",
-    "test-ts": "tsc --noEmit src/**/__test-ts__/*.ts",
+    "test": "mocha --require ts-node/register src/__test__/*.test.ts",
+    "test-ts": "tsc --noEmit src/__test-ts__/*.ts",
     "build": "tsup src/index.ts --format cjs,esm --dts --minify"
   },
   "author": "",

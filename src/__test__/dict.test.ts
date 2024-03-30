@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Schema } from "../..";
+import { Schema } from "..";
 
 describe("Schema.Dict", () => {
   it("should return correct DictSchema", () => {

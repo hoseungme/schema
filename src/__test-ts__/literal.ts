@@ -1,4 +1,4 @@
-import { Schema } from "../..";
+import { Schema } from "..";
 import { expect } from "./utils/assert";
 
 expect(Schema.Literal(123)).toBeResolved<123>();
