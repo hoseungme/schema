@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { S } from "..";
 
-describe("Schema.Array", () => {
+describe("S.Array", () => {
   it("should return correct ArraySchema", () => {
     const numberSchema = S.Number();
     const arraySchema = S.Array(numberSchema);
