@@ -1,4 +1,4 @@
-import { ResolveSchema, Schema } from "./types";
+import { MatchFunc, ResolveSchema, Schema } from "./types";
 import { isOptionalSchema, OptionalSchema } from "./optional";
 import { Symbols } from "./symbols";
 
@@ -11,12 +11,15 @@ type RequiredPropertyKeys<T extends Properties> = keyof Omit<T, OptionalProperty
 
 type ResolveProperties<T extends Properties> = { [K in keyof T]: ResolveSchema<T[K]> };
 
+type ObjectMatchFunc<T extends Properties> = MatchFunc<ResolveProperties<T>>;
+
 export interface ObjectSchema<T extends Properties = Properties> extends Schema {
   [key: typeof Symbols.Kind]: "Object";
+  match: ObjectMatchFunc<T>;
 
   type: "object";
   properties: T;
-  required: string[];
+  required: Array<string>;
 }
 
 export type ResolveObjectSchema<T extends ObjectSchema> = Partial<
@@ -25,10 +28,37 @@ export type ResolveObjectSchema<T extends ObjectSchema> = Partial<
   Pick<ResolveProperties<T["properties"]>, RequiredPropertyKeys<T["properties"]>>;
 
 export function createObjectSchema<T extends Properties>(properties: T): ObjectSchema<T> {
-  const entries = Object.entries(properties);
-  const required = entries.filter(([, schema]) => !isOptionalSchema(schema)).map(([key]) => key);
+  const required = Object.entries(properties)
+    .filter(([, schema]) => !isOptionalSchema(schema))
+    .map(([key]) => key);
 
-  return { [Symbols.Kind]: "Object", type: "object", properties, required };
+  const match = ((value) => {
+    const isObject = typeof value === "object";
+    if (!isObject) {
+      return false;
+    }
+
+    const hasAllRequiredProperties = required.every((key) => value[key] !== undefined);
+    if (!hasAllRequiredProperties) {
+      return false;
+    }
+
+    const isAllValueMatched = Object.entries(value).every(([key, value]) => properties[key].match(value));
+    if (!isAllValueMatched) {
+      return false;
+    }
+
+    return true;
+  }) as ObjectMatchFunc<T>;
+
+  return {
+    [Symbols.Kind]: "Object",
+    match,
+
+    type: "object",
+    properties,
+    required,
+  };
 }
 
 export function isObjectSchema(schema: Schema): schema is ObjectSchema {

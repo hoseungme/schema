@@ -1,10 +1,13 @@
 import { Symbols } from "./symbols";
-import { Schema } from "./types";
+import { MatchFunc, Schema } from "./types";
 
 export type LiteralValue = number | string | boolean;
 
+export type LiteralMatchFunc<T extends LiteralValue> = MatchFunc<T>;
+
 export interface LiteralSchema<T extends LiteralValue = LiteralValue> extends Schema {
   [key: typeof Symbols.Kind]: "Literal";
+  match: LiteralMatchFunc<T>;
 
   type: T extends number ? "number" : T extends string ? "string" : "boolean";
   const: T;
@@ -12,11 +15,17 @@ export interface LiteralSchema<T extends LiteralValue = LiteralValue> extends Sc
 
 export type ResolveLiteralSchema<T extends LiteralSchema> = T["const"];
 
-export function createLiteralSchema<T extends LiteralValue = LiteralValue>(value: T): LiteralSchema<T> {
+export function createLiteralSchema<T extends LiteralValue = LiteralValue>(literal: T): LiteralSchema<T> {
+  const match = ((value) => {
+    return value === literal;
+  }) as LiteralMatchFunc<T>;
+
   return {
     [Symbols.Kind]: "Literal",
+    match,
+
     type: (() => {
-      const typeofValue = typeof value;
+      const typeofValue = typeof literal;
       switch (typeofValue) {
         case "number":
         case "string":
@@ -26,7 +35,7 @@ export function createLiteralSchema<T extends LiteralValue = LiteralValue>(value
           throw new Error("unexpected value");
       }
     })(),
-    const: value,
+    const: literal,
   };
 }
 

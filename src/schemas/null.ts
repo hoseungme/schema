@@ -1,8 +1,11 @@
 import { Symbols } from "./symbols";
-import { Schema } from "./types";
+import { MatchFunc, Schema } from "./types";
+
+type NullMatchFunc = MatchFunc<null>;
 
 export interface NullSchema extends Schema {
   [key: typeof Symbols.Kind]: "Null";
+  match: NullMatchFunc;
 
   type: "null";
 }
@@ -10,7 +13,16 @@ export interface NullSchema extends Schema {
 export type ResolveNullSchema = null;
 
 export function createNullSchema(): NullSchema {
-  return { [Symbols.Kind]: "Null", type: "null" };
+  const match = ((value) => {
+    return value === null;
+  }) as NullMatchFunc;
+
+  return {
+    [Symbols.Kind]: "Null",
+    match,
+
+    type: "null",
+  };
 }
 
 export function isNullSchema(schema: Schema): schema is NullSchema {

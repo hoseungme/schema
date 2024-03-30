@@ -1,5 +1,7 @@
 import { Symbols } from "./symbols";
-import { Schema } from "./types";
+import { MatchFunc, Schema } from "./types";
+
+type StringMatchFunc = MatchFunc<string>;
 
 export interface StringSchema extends Schema {
   [key: typeof Symbols.Kind]: "String";
@@ -10,7 +12,16 @@ export interface StringSchema extends Schema {
 export type ResolveStringSchema = string;
 
 export function createStringSchema(): StringSchema {
-  return { [Symbols.Kind]: "String", type: "string" };
+  const match = ((value) => {
+    return typeof value === "string";
+  }) as StringMatchFunc;
+
+  return {
+    [Symbols.Kind]: "String",
+    match,
+
+    type: "string",
+  };
 }
 
 export function isStringSchema(schema: Schema): schema is StringSchema {

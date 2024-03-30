@@ -1,8 +1,11 @@
 import { S } from ".";
 import { Symbols } from "./symbols";
 
+export type MatchFunc<T> = (value: any) => value is T;
+
 export interface Schema {
   [key: typeof Symbols.Kind]: string;
+  match: MatchFunc<any>;
 }
 
 export type ResolveSchema<T extends Schema> = T extends S.Number
@@ -23,4 +26,4 @@ export type ResolveSchema<T extends Schema> = T extends S.Number
   ? S.Union.Resolve<T>
   : T extends S.Dict
   ? S.Dict.Resolve<T>
-  : never;
+  : unknown;

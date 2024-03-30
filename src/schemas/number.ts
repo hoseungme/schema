@@ -1,8 +1,11 @@
 import { Symbols } from "./symbols";
-import { Schema } from "./types";
+import { MatchFunc, Schema } from "./types";
+
+type NumberMatchFunc = MatchFunc<number>;
 
 export interface NumberSchema extends Schema {
   [key: typeof Symbols.Kind]: "Number";
+  match: NumberMatchFunc;
 
   type: "number";
 }
@@ -10,7 +13,16 @@ export interface NumberSchema extends Schema {
 export type ResolveNumberSchema = number;
 
 export function createNumberSchema(): NumberSchema {
-  return { [Symbols.Kind]: "Number", type: "number" };
+  const match = ((value) => {
+    return typeof value === "number";
+  }) as NumberMatchFunc;
+
+  return {
+    [Symbols.Kind]: "Number",
+    match,
+
+    type: "number",
+  };
 }
 
 export function isNumberSchema(schema: Schema): schema is NumberSchema {
