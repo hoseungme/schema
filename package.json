@@ -1,5 +1,5 @@
 {
-  "name": "@hoseungme/schema",
+  "name": "@hoseung.json/schema",
   "version": "0.0.0",
   "description": "JSON schema builder for TypeScript",
   "files": [
