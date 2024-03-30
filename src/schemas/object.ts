@@ -1,6 +1,6 @@
 import { ResolveSchema, Schema } from "./types";
 import { isOptionalSchema, OptionalSchema } from "./optional";
-import { toJSON } from "./utils";
+import { Symbols } from "./symbols";
 
 export type Properties = Record<string, Schema>;
 
@@ -12,7 +12,7 @@ type RequiredPropertyKeys<T extends Properties> = keyof Omit<T, OptionalProperty
 type ResolveProperties<T extends Properties> = { [K in keyof T]: ResolveSchema<T[K]> };
 
 export interface ObjectSchema<T extends Properties = Properties> extends Schema {
-  __kind: "Object";
+  [key: typeof Symbols.Kind]: "Object";
 
   type: "object";
   properties: T;
@@ -28,5 +28,5 @@ export function createObjectSchema<T extends Properties>(properties: T): ObjectS
   const entries = Object.entries(properties);
   const required = entries.filter(([, schema]) => !isOptionalSchema(schema)).map(([key]) => key);
 
-  return { __kind: "Object", type: "object", properties, required, toJSON };
+  return { [Symbols.Kind]: "Object", type: "object", properties, required };
 }

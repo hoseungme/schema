@@ -1,8 +1,8 @@
+import { Symbols } from "./symbols";
 import { Schema } from "./types";
-import { toJSON } from "./utils";
 
 export interface StringSchema extends Schema {
-  __kind: "String";
+  [key: typeof Symbols.Kind]: "String";
 
   type: "string";
 }
@@ -10,5 +10,5 @@ export interface StringSchema extends Schema {
 export type ResolveStringSchema = string;
 
 export function createStringSchema(): StringSchema {
-  return { __kind: "String", type: "string", toJSON };
+  return { [Symbols.Kind]: "String", type: "string" };
 }

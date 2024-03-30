@@ -1,8 +1,8 @@
 import { S } from ".";
+import { Symbols } from "./symbols";
 
 export interface Schema {
-  __kind: string;
-  toJSON(): string;
+  [key: typeof Symbols.Kind]: string;
 }
 
 export type ResolveSchema<T extends Schema> = T extends S.Number

@@ -1,8 +1,8 @@
+import { Symbols } from "./symbols";
 import { Schema } from "./types";
-import { toJSON } from "./utils";
 
 export interface BooleanSchema extends Schema {
-  __kind: "Boolean";
+  [key: typeof Symbols.Kind]: "Boolean";
 
   type: "boolean";
 }
@@ -10,5 +10,5 @@ export interface BooleanSchema extends Schema {
 export type ResolveBooleanSchema = boolean;
 
 export function createBooleanSchema(): BooleanSchema {
-  return { __kind: "Boolean", type: "boolean", toJSON };
+  return { [Symbols.Kind]: "Boolean", type: "boolean" };
 }

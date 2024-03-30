@@ -1,8 +1,8 @@
+import { Symbols } from "./symbols";
 import { Schema } from "./types";
-import { toJSON } from "./utils";
 
 export interface NumberSchema extends Schema {
-  __kind: "Number";
+  [key: typeof Symbols.Kind]: "Number";
 
   type: "number";
 }
@@ -10,5 +10,5 @@ export interface NumberSchema extends Schema {
 export type ResolveNumberSchema = number;
 
 export function createNumberSchema(): NumberSchema {
-  return { __kind: "Number", type: "number", toJSON };
+  return { [Symbols.Kind]: "Number", type: "number" };
 }

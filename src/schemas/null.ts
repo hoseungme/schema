@@ -1,8 +1,8 @@
+import { Symbols } from "./symbols";
 import { Schema } from "./types";
-import { toJSON } from "./utils";
 
 export interface NullSchema extends Schema {
-  __kind: "Null";
+  [key: typeof Symbols.Kind]: "Null";
 
   type: "null";
 }
@@ -10,5 +10,5 @@ export interface NullSchema extends Schema {
 export type ResolveNullSchema = null;
 
 export function createNullSchema(): NullSchema {
-  return { __kind: "Null", type: "null", toJSON };
+  return { [Symbols.Kind]: "Null", type: "null" };
 }
