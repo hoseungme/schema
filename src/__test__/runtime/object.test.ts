@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { S } from "../..";
 
-describe("S.Object", () => {
+describe("S.Object()", () => {
   it("should return correct ObjectSchema", () => {
     const properties = {
       a: S.Number(),
@@ -33,7 +33,7 @@ describe("S.Object", () => {
   });
 });
 
-describe("S.isObject", () => {
+describe("S.isObject()", () => {
   it("should return true only for ObjectSchema", () => {
     expect(
       S.isObject(
@@ -44,5 +44,22 @@ describe("S.isObject", () => {
       )
     ).to.be.eq(true);
     expect(S.isObject(S.Number())).to.be.eq(false);
+  });
+});
+
+describe("S.Object().match()", () => {
+  it("should return true only for correct value", () => {
+    const schema = S.Object({
+      a: S.Number(),
+      b: S.Optional(S.String()),
+      c: S.Null(),
+    });
+
+    expect(schema.match({ a: 1, b: "2", c: null })).to.be.eq(true);
+    expect(schema.match({ a: 1, c: null })).to.be.eq(true);
+    expect(schema.match({ a: 1 })).to.be.eq(false);
+    expect(schema.match({})).to.be.eq(false);
+    expect(schema.match(1)).to.be.eq(false);
+    expect(schema.match("a")).to.be.eq(false);
   });
 });

@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { S } from "../..";
 
-describe("S.String", () => {
+describe("S.String()", () => {
   it("should return correct StringSchema", () => {
     const schema = S.String();
 
@@ -15,9 +15,18 @@ describe("S.String", () => {
   });
 });
 
-describe("S.isString", () => {
+describe("S.isString()", () => {
   it("should return true only for StringSchema", () => {
     expect(S.isString(S.String())).to.be.eq(true);
     expect(S.isString(S.Number())).to.be.eq(false);
+  });
+});
+
+describe("S.String().match()", () => {
+  it("should return true only for correct value", () => {
+    const schema = S.String();
+
+    expect(schema.match("foo")).to.be.eq(true);
+    expect(schema.match(123)).to.be.eq(false);
   });
 });

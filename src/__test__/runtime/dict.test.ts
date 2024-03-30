@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { S } from "../..";
 
-describe("S.Dict", () => {
+describe("S.Dict()", () => {
   it("should return correct DictSchema", () => {
     const numberSchema = S.Number();
     const dictSchema = S.Dict(numberSchema);
@@ -24,9 +24,19 @@ describe("S.Dict", () => {
   });
 });
 
-describe("S.isDict", () => {
+describe("S.isDict()", () => {
   it("should return true only for DictSchema", () => {
     expect(S.isDict(S.Dict(S.Number()))).to.be.eq(true);
     expect(S.isDict(S.Number())).to.be.eq(false);
+  });
+});
+
+describe("S.Dict().match()", () => {
+  it("should return true only for correct value", () => {
+    const schema = S.Dict(S.Number());
+
+    expect(schema.match({ a: 1, b: 2 })).to.be.eq(true);
+    expect(schema.match({ a: "1", b: "2" })).to.be.eq(false);
+    expect(schema.match({ a: 1, b: "2" })).to.be.eq(false);
   });
 });

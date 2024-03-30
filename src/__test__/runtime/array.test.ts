@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { S } from "../..";
 
-describe("S.Array", () => {
+describe("S.Array()", () => {
   it("should return correct ArraySchema", () => {
     const numberSchema = S.Number();
     const arraySchema = S.Array(numberSchema);
@@ -22,9 +22,19 @@ describe("S.Array", () => {
   });
 });
 
-describe("S.isArray", () => {
+describe("S.isArray()", () => {
   it("should return true only for ArraySchema", () => {
     expect(S.isArray(S.Array(S.Number()))).to.be.eq(true);
     expect(S.isArray(S.Number())).to.be.eq(false);
+  });
+});
+
+describe("S.Array().match()", () => {
+  it("should return true only for correct value", () => {
+    const schema = S.Array(S.Number());
+
+    expect(schema.match([1, 2, 3])).to.be.eq(true);
+    expect(schema.match(["a", "b", "c"])).to.be.eq(false);
+    expect(schema.match([1, 2, 3, "a", "b", "c"])).to.be.eq(false);
   });
 });
