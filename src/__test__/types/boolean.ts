@@ -1,4 +1,8 @@
 import { S } from "../..";
-import { expect } from "./utils/assert";
+import { expect, unknownValue } from "./utils/assert";
 
-expect(S.Boolean()).toBeResolved<boolean>();
+expect.schema(S.Boolean()).toBeResolved<boolean>();
+
+if (S.Boolean().match(unknownValue)) {
+  expect(unknownValue).toBe<boolean>();
+}

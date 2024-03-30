@@ -1,4 +1,8 @@
 import { S } from "../..";
-import { expect } from "./utils/assert";
+import { expect, unknownValue } from "./utils/assert";
 
-expect(S.String()).toBeResolved<string>();
+expect.schema(S.String()).toBeResolved<string>();
+
+if (S.String().match(unknownValue)) {
+  expect(unknownValue).toBe<string>();
+}
