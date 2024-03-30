@@ -1,22 +1,22 @@
-import { Schema } from "..";
+import { S } from "..";
 import { expect } from "./utils/assert";
 
 expect(
-  Schema.Object({
-    a: Schema.Number(),
-    b: Schema.String(),
+  S.Object({
+    a: S.Number(),
+    b: S.String(),
   })
 ).toBeResolved<{ a: number; b: string }>();
 
 expect(
-  Schema.Object({
-    a: Schema.Object({
-      a: Schema.Number(),
-      b: Schema.String(),
+  S.Object({
+    a: S.Object({
+      a: S.Number(),
+      b: S.String(),
     }),
-    b: Schema.Object({
-      a: Schema.Number(),
-      b: Schema.String(),
+    b: S.Object({
+      a: S.Number(),
+      b: S.String(),
     }),
   })
 ).toBeResolved<{
@@ -31,22 +31,22 @@ expect(
 }>();
 
 expect(
-  Schema.Object({
-    a: Schema.Literal(123),
-    b: Schema.Literal("foo"),
+  S.Object({
+    a: S.Literal(123),
+    b: S.Literal("foo"),
   })
 ).toBeResolved<{ a: 123; b: "foo" }>();
 
 expect(
-  Schema.Object({
-    a: Schema.Number(),
-    b: Schema.Optional(Schema.String()),
+  S.Object({
+    a: S.Number(),
+    b: S.Optional(S.String()),
   })
 ).toBeResolved<{ a: number }>();
 
 expect(
-  Schema.Object({
-    a: Schema.Number(),
-    b: Schema.Optional(Schema.String()),
+  S.Object({
+    a: S.Number(),
+    b: S.Optional(S.String()),
   })
 ).toBeResolved<{ a: number; b: string }>();

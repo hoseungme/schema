@@ -1,8 +1,8 @@
-import { Schema } from "..";
+import { S } from "..";
 import { expect } from "./utils/assert";
 
-expect(Schema.Literal(123)).toBeResolved<123>();
+expect(S.Literal(123)).toBeResolved<123>();
 
-expect(Schema.Literal("foo")).toBeResolved<"foo">();
+expect(S.Literal("foo")).toBeResolved<"foo">();
 
-expect(Schema.Literal(true)).toBeResolved<true>();
+expect(S.Literal(true)).toBeResolved<true>();

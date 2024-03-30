@@ -1,9 +1,9 @@
 import { expect } from "chai";
-import { Schema } from "..";
+import { S } from "..";
 
-describe("Schema.Literal", () => {
+describe("S.Literal", () => {
   it("should return correct LiteralSchema", () => {
-    const schema = Schema.Literal("foo");
+    const schema = S.Literal("foo");
 
     expect(schema.__kind).to.be.eq("Literal");
     expect(schema.type).to.be.eq("string");

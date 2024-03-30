@@ -1,4 +1,4 @@
-import { Resolve, Schema } from "../types";
+import { Resolve, Schema } from "./types";
 
 export interface ArraySchema<T extends Schema = Schema> extends Schema {
   __kind: "Array";

@@ -1,10 +1,11 @@
 import { expect } from "chai";
-import { Schema } from "..";
+import { S } from "..";
 
-describe("Schema.Union", () => {
+describe("S.Union", () => {
   describe("should return UnionSchema", () => {
-    const schemas = [Schema.Number(), Schema.String(), Schema.Object({ foo: Schema.Literal("bar") })];
-    const schema = Schema.Union(schemas);
+    const schemas = [S.Number(), S.String(), S.Object({ foo: S.Literal("bar") })];
+    const schema = S.Union(schemas);
+
     expect(schema.__kind).to.be.eq("Union");
     expect(schema.anyOf).to.be.deep.eq(schemas);
   });

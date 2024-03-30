@@ -1,9 +1,9 @@
 import { expect } from "chai";
-import { Schema } from "..";
+import { S } from "..";
 
-describe("Schema.Boolean", () => {
+describe("S.Boolean", () => {
   it("should return correct BooleanSchema", () => {
-    const schema = Schema.Boolean();
+    const schema = S.Boolean();
 
     expect(schema.__kind).to.be.eq("Boolean");
     expect(schema.type).to.be.eq("boolean");

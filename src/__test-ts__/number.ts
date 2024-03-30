@@ -1,4 +1,4 @@
-import { Schema } from "..";
+import { S } from "..";
 import { expect } from "./utils/assert";
 
-expect(Schema.Number()).toBeResolved<number>();
+expect(S.Number()).toBeResolved<number>();

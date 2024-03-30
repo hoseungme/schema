@@ -1,4 +1,4 @@
-import { Schema } from "../types/schema";
+import { Schema } from "./types";
 
 export type OptionalSchema<T extends Schema = Schema> = T & { __optional: "Optional" };
 

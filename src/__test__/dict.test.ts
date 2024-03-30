@@ -1,10 +1,10 @@
 import { expect } from "chai";
-import { Schema } from "..";
+import { S } from "..";
 
-describe("Schema.Dict", () => {
+describe("S.Dict", () => {
   it("should return correct DictSchema", () => {
-    const numberSchema = Schema.Number();
-    const dictSchema = Schema.Dict(numberSchema);
+    const numberSchema = S.Number();
+    const dictSchema = S.Dict(numberSchema);
 
     expect(dictSchema.__kind).to.be.eq("Dict");
     expect(dictSchema.type).to.be.eq("object");

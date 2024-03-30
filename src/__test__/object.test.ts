@@ -1,13 +1,13 @@
 import { expect } from "chai";
-import { Schema } from "..";
+import { S } from "..";
 
-describe("Schema.Object", () => {
+describe("S.Object", () => {
   it("should return correct ObjectSchema", () => {
     const properties = {
-      foo: Schema.Literal("bar"),
-      num: Schema.Optional(Schema.Number()),
+      foo: S.Literal("bar"),
+      num: S.Optional(S.Number()),
     };
-    const schema = Schema.Object(properties);
+    const schema = S.Object(properties);
 
     expect(schema.__kind).to.be.eq("Object");
     expect(schema.type).to.be.eq("object");

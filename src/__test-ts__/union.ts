@@ -1,19 +1,17 @@
-import { Schema } from "..";
+import { S } from "..";
 import { expect } from "./utils/assert";
 
-expect(Schema.Union([Schema.Number(), Schema.String()])).toBeResolved<number | string>();
+expect(S.Union([S.Number(), S.String()])).toBeResolved<number | string>();
 
-expect(Schema.Union([Schema.Literal(123), Schema.Literal("foo"), Schema.Literal("bar")])).toBeResolved<
-  123 | "foo" | "bar"
->();
+expect(S.Union([S.Literal(123), S.Literal("foo"), S.Literal("bar")])).toBeResolved<123 | "foo" | "bar">();
 
 expect(
-  Schema.Union([
-    Schema.Object({
-      a: Schema.Number(),
+  S.Union([
+    S.Object({
+      a: S.Number(),
     }),
-    Schema.Object({
-      b: Schema.String(),
+    S.Object({
+      b: S.String(),
     }),
   ])
 ).toBeResolved<{ a: number } | { b: string }>();

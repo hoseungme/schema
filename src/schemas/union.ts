@@ -1,4 +1,4 @@
-import { Resolve, Schema } from "../types";
+import { Resolve, Schema } from "./types";
 
 export interface UnionSchema<T extends Schema = Schema> {
   __kind: "Union";

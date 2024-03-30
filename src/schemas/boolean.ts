@@ -1,4 +1,4 @@
-import { Schema } from "../types";
+import { Schema } from "./types";
 
 export interface BooleanSchema extends Schema {
   __kind: "Boolean";

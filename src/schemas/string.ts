@@ -1,4 +1,4 @@
-import { Schema } from "../types/schema";
+import { Schema } from "./types";
 
 export interface StringSchema extends Schema {
   __kind: "String";

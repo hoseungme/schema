@@ -8,8 +8,9 @@ import { createLiteralSchema, LiteralSchema } from "./literal";
 import { createOptionalSchema, OptionalSchema } from "./optional";
 import { createUnionSchema, UnionSchema } from "./union";
 import { createDictSchema, DictSchema } from "./dict";
+import { Schema, Resolve } from "./types";
 
-export const Schema = {
+export const S = {
   Number: createNumberSchema,
   String: createStringSchema,
   Boolean: createBooleanSchema,
@@ -45,4 +46,6 @@ export type {
   OptionalSchema,
   UnionSchema,
   DictSchema,
+  Schema,
+  Resolve,
 };

@@ -1,5 +1,4 @@
-import { Resolve, Schema } from "../types";
-import { objectEntries } from "../utils/object";
+import { Resolve, Schema } from "./types";
 import { isOptionalSchema, OptionalSchema } from "./optional";
 
 type Properties = Record<string, Schema>;
@@ -24,7 +23,7 @@ export interface ObjectSchema<T extends Properties = Properties> extends Schema 
 }
 
 export function createObjectSchema<T extends Properties>(properties: T): ObjectSchema<T> {
-  const entries = objectEntries(properties);
+  const entries = Object.entries(properties);
   const required = entries.filter(([, schema]) => !isOptionalSchema(schema)).map(([key]) => key);
 
   return { __kind: "Object", type: "object", properties, required } as ObjectSchema<T>;

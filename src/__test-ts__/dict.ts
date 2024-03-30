@@ -1,19 +1,19 @@
-import { Schema } from "..";
+import { S } from "..";
 import { expect } from "./utils/assert";
 
-expect(Schema.Dict(Schema.Number())).toBeResolved<{ [key: string]: number }>();
+expect(S.Dict(S.Number())).toBeResolved<{ [key: string]: number }>();
 
-expect(Schema.Dict(Schema.String())).toBeResolved<{ [key: string]: string }>();
+expect(S.Dict(S.String())).toBeResolved<{ [key: string]: string }>();
 
-expect(Schema.Dict(Schema.Boolean())).toBeResolved<{ [key: string]: boolean }>();
+expect(S.Dict(S.Boolean())).toBeResolved<{ [key: string]: boolean }>();
 
-expect(Schema.Dict(Schema.Array(Schema.Number()))).toBeResolved<{ [key: string]: Array<number> }>();
+expect(S.Dict(S.Array(S.Number()))).toBeResolved<{ [key: string]: Array<number> }>();
 
 expect(
-  Schema.Dict(
-    Schema.Object({
-      a: Schema.Number(),
-      b: Schema.String(),
+  S.Dict(
+    S.Object({
+      a: S.Number(),
+      b: S.String(),
     })
   )
 ).toBeResolved<{ [key: string]: { a: number; b: string } }>();

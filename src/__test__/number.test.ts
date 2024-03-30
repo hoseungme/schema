@@ -1,9 +1,9 @@
 import { expect } from "chai";
-import { Schema } from "..";
+import { S } from "..";
 
-describe("Schema.Number", () => {
+describe("S.Number", () => {
   it("should return correct NumberSchema", () => {
-    const schema = Schema.Number();
+    const schema = S.Number();
 
     expect(schema.__kind).to.be.eq("Number");
     expect(schema.type).to.be.eq("number");

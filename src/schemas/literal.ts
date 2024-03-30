@@ -1,4 +1,4 @@
-import { Schema } from "../types/schema";
+import { Schema } from "./types";
 
 type LiteralValue = number | string | boolean;
 

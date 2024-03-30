@@ -1,10 +1,10 @@
 import { expect } from "chai";
-import { Schema } from "..";
+import { S } from "..";
 
 describe("Schema.Array", () => {
   it("should return correct ArraySchema", () => {
-    const numberSchema = Schema.Number();
-    const arraySchema = Schema.Array(numberSchema);
+    const numberSchema = S.Number();
+    const arraySchema = S.Array(numberSchema);
 
     expect(arraySchema.__kind).to.be.eq("Array");
     expect(arraySchema.type).to.be.eq("array");
