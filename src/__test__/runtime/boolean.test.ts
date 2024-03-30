@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { S } from "..";
+import { S } from "../..";
 
 describe("S.Boolean", () => {
   it("should return correct BooleanSchema", () => {

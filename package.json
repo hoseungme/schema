@@ -21,8 +21,8 @@
     }
   },
   "scripts": {
-    "test": "mocha --require ts-node/register src/__test__/*.test.ts",
-    "test-ts": "tsc --noEmit src/__test-ts__/*.ts",
+    "test-runtime": "mocha --require ts-node/register src/__test__/runtime/**/*.test.ts",
+    "test-types": "tsc --noEmit src/__test__/types/*.ts",
     "build": "tsup src/index.ts --format cjs,esm --dts --minify"
   },
   "author": "",

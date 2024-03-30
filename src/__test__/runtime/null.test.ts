@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { S } from "..";
+import { S } from "../..";
 
 describe("S.Null", () => {
   it("should return correct NullSchema", () => {

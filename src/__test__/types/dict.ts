@@ -1,4 +1,4 @@
-import { S } from "..";
+import { S } from "../..";
 import { expect } from "./utils/assert";
 
 expect(S.Dict(S.Number())).toBeResolved<{ [key: string]: number }>();
