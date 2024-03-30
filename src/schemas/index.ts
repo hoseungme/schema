@@ -1,13 +1,13 @@
-import { createNumberSchema, NumberSchema, ResolveNumberSchema } from "./number";
-import { createStringSchema, ResolveStringSchema, StringSchema } from "./string";
-import { createBooleanSchema, BooleanSchema, ResolveBooleanSchema } from "./boolean";
-import { createArraySchema, ArraySchema, ResolveArrayScehma } from "./array";
-import { createObjectSchema, ObjectSchema, Properties, ResolveObjectSchema } from "./object";
-import { createNullSchema, NullSchema, ResolveNullSchema } from "./null";
-import { createLiteralSchema, LiteralSchema, LiteralValue, ResolveLiteralSchema } from "./literal";
-import { createOptionalSchema, OptionalSchema } from "./optional";
-import { createUnionSchema, ResolveUnionSchema, UnionSchema } from "./union";
-import { createDictSchema, DictSchema, ResolveDictSchema } from "./dict";
+import { createNumberSchema, isNumberSchema, NumberSchema, ResolveNumberSchema } from "./number";
+import { createStringSchema, isStringSchema, ResolveStringSchema, StringSchema } from "./string";
+import { createBooleanSchema, BooleanSchema, ResolveBooleanSchema, isBooleanSchema } from "./boolean";
+import { createArraySchema, ArraySchema, ResolveArrayScehma, isArraySchema } from "./array";
+import { createObjectSchema, isObjectSchema, ObjectSchema, Properties, ResolveObjectSchema } from "./object";
+import { createNullSchema, isNullSchema, NullSchema, ResolveNullSchema } from "./null";
+import { createLiteralSchema, isLiteralSchema, LiteralSchema, LiteralValue, ResolveLiteralSchema } from "./literal";
+import { createOptionalSchema, isOptionalSchema, OptionalSchema } from "./optional";
+import { createUnionSchema, isUnionSchema, ResolveUnionSchema, UnionSchema } from "./union";
+import { createDictSchema, DictSchema, isDictSchema, ResolveDictSchema } from "./dict";
 import { ResolveSchema, Schema } from "./types";
 
 export const S = {
@@ -21,6 +21,17 @@ export const S = {
   Optional: createOptionalSchema,
   Union: createUnionSchema,
   Dict: createDictSchema,
+
+  isNumber: isNumberSchema,
+  isString: isStringSchema,
+  isBoolean: isBooleanSchema,
+  isNull: isNullSchema,
+  isArray: isArraySchema,
+  isObject: isObjectSchema,
+  isLiteral: isLiteralSchema,
+  isOptional: isOptionalSchema,
+  isUnion: isUnionSchema,
+  isDict: isDictSchema,
 };
 
 export namespace S {

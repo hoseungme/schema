@@ -12,3 +12,7 @@ export type ResolveStringSchema = string;
 export function createStringSchema(): StringSchema {
   return { [Symbols.Kind]: "String", type: "string" };
 }
+
+export function isStringSchema(schema: Schema): schema is StringSchema {
+  return schema[Symbols.Kind] === "String";
+}

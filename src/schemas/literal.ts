@@ -29,3 +29,7 @@ export function createLiteralSchema<T extends LiteralValue = LiteralValue>(value
     const: value,
   };
 }
+
+export function isLiteralSchema(schema: Schema): schema is LiteralSchema {
+  return schema[Symbols.Kind] === "Literal";
+}

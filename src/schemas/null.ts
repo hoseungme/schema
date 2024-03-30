@@ -12,3 +12,7 @@ export type ResolveNullSchema = null;
 export function createNullSchema(): NullSchema {
   return { [Symbols.Kind]: "Null", type: "null" };
 }
+
+export function isNullSchema(schema: Schema): schema is NullSchema {
+  return schema[Symbols.Kind] === "Null";
+}

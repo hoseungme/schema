@@ -12,3 +12,7 @@ export type ResolveUnionSchema<T extends UnionSchema> = ResolveSchema<T["anyOf"]
 export function createUnionSchema<T extends Schema>(schemas: T[]): UnionSchema<T> {
   return { [Symbols.Kind]: "Union", anyOf: schemas };
 }
+
+export function isUnionSchema(schema: Schema): schema is UnionSchema {
+  return schema[Symbols.Kind] === "Union";
+}

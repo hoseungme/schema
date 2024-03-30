@@ -30,3 +30,7 @@ export function createObjectSchema<T extends Properties>(properties: T): ObjectS
 
   return { [Symbols.Kind]: "Object", type: "object", properties, required };
 }
+
+export function isObjectSchema(schema: Schema): schema is ObjectSchema {
+  return schema[Symbols.Kind] === "Object";
+}

@@ -12,3 +12,7 @@ export type ResolveBooleanSchema = boolean;
 export function createBooleanSchema(): BooleanSchema {
   return { [Symbols.Kind]: "Boolean", type: "boolean" };
 }
+
+export function isBooleanSchema(schema: Schema): schema is BooleanSchema {
+  return schema[Symbols.Kind] === "Boolean";
+}

@@ -14,3 +14,7 @@ export type ResolveDictSchema<T extends DictSchema> = { [key: string]: ResolveSc
 export function createDictSchema<T extends Schema>(schema: T): DictSchema<T> {
   return { [Symbols.Kind]: "Dict", type: "object", properties: {}, additionalProperties: schema };
 }
+
+export function isDictSchema(schema: Schema): schema is DictSchema {
+  return schema[Symbols.Kind] === "Dict";
+}
