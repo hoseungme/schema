@@ -14,7 +14,7 @@ $ npm install @hoseung.json/schema
 ```
 
 ```typescript
-import { Schema, Resolve } from "@hoseung.json/schema";
+import { S, Resolve } from "@hoseung.json/schema";
 
 // {
 //   type: "object",
@@ -24,9 +24,9 @@ import { Schema, Resolve } from "@hoseung.json/schema";
 //   }
 //   required: ["id", "name"]
 // }
-const User = Schema.Object({
-  id: Schema.Number(),
-  name: Schema.String(),
+const User = S.Object({
+  id: S.Number(),
+  name: S.String(),
 });
 
 // {
