@@ -7,6 +7,6 @@ export interface NullSchema extends Schema {
   type: "null";
 }
 
-export function Null(): NullSchema {
+export function createNullSchema(): NullSchema {
   return { __kind: "Null", type: "null" } as NullSchema;
 }

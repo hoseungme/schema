@@ -8,6 +8,6 @@ export interface ArraySchema<T extends Schema = Schema> extends Schema {
   items: T;
 }
 
-export function Array<T extends Schema>(items: T): ArraySchema<T> {
+export function createArraySchema<T extends Schema>(items: T): ArraySchema<T> {
   return { __kind: "Array", type: "array", items } as ArraySchema<T>;
 }

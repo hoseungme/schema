@@ -7,6 +7,6 @@ export interface UnionSchema<T extends Schema = Schema> {
   anyOf: T[];
 }
 
-export function Union<T extends Schema>(schemas: T[]): UnionSchema<T> {
+export function createUnionSchema<T extends Schema>(schemas: T[]): UnionSchema<T> {
   return { __kind: "Union", anyOf: schemas } as UnionSchema<T>;
 }

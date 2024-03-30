@@ -7,6 +7,6 @@ export interface StringSchema extends Schema {
   type: "string";
 }
 
-export function String(): StringSchema {
+export function createStringSchema(): StringSchema {
   return { __kind: "String", type: "string" } as StringSchema;
 }

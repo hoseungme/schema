@@ -7,6 +7,6 @@ export interface BooleanSchema extends Schema {
   type: "boolean";
 }
 
-export function Boolean(): BooleanSchema {
+export function createBooleanSchema(): BooleanSchema {
   return { __kind: "Boolean", type: "boolean" } as BooleanSchema;
 }

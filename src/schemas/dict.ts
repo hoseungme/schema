@@ -9,6 +9,6 @@ export interface DictSchema<T extends Schema = Schema> extends Schema {
   additionalProperties: T;
 }
 
-export function Dict<T extends Schema>(schema: T): DictSchema<T> {
+export function createDictSchema<T extends Schema>(schema: T): DictSchema<T> {
   return { __kind: "Dict", type: "object", properties: {}, additionalProperties: schema } as DictSchema<T>;
 }

@@ -9,6 +9,6 @@ export interface NumberSchema extends Schema {
 
 export type ResolveNumber = number;
 
-export function Number(): NumberSchema {
+export function createNumberSchema(): NumberSchema {
   return { __kind: "Number", type: "number" } as NumberSchema;
 }

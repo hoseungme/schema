@@ -10,7 +10,7 @@ export interface LiteralSchema<T extends LiteralValue = LiteralValue> extends Sc
   const: T;
 }
 
-export function Literal<T extends LiteralValue = LiteralValue>(value: T): LiteralSchema<T> {
+export function createLiteralSchema<T extends LiteralValue = LiteralValue>(value: T): LiteralSchema<T> {
   return {
     __kind: "Literal",
     type: (() => {
