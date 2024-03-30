@@ -14,7 +14,7 @@ $ npm install @hoseung.json/schema
 ```
 
 ```typescript
-import { S, Resolve } from "@hoseung.json/schema";
+import { S } from "@hoseung.json/schema";
 
 // {
 //   type: "object",
@@ -33,5 +33,5 @@ const User = S.Object({
 //   id: number;
 //   name: string;
 // }
-type User = Resolve<typeof User>;
+type User = S.Resolve<typeof User>;
 ```
