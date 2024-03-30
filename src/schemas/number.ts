@@ -1,14 +1,14 @@
 import { Schema } from "./types";
+import { toJSON } from "./utils";
 
 export interface NumberSchema extends Schema {
   __kind: "Number";
-  __resolved: number;
 
   type: "number";
 }
 
-export type ResolveNumber = number;
+export type ResolveNumberSchema = number;
 
 export function createNumberSchema(): NumberSchema {
-  return { __kind: "Number", type: "number" } as NumberSchema;
+  return { __kind: "Number", type: "number", toJSON };
 }

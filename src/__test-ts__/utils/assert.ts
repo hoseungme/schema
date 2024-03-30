@@ -1,8 +1,7 @@
-import { Schema } from "../..";
-import { Resolve } from "../../../dist";
+import { S } from "../..";
 
-export function expect<T extends Schema>(schema: T) {
-  function toBeResolved<R extends Resolve<T>>() {}
+export function expect<T extends S.Any>(schema: T) {
+  function toBeResolved<R extends S.Resolve<T>>() {}
 
   return { toBeResolved };
 }

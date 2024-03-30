@@ -1,12 +1,14 @@
-import { Resolve, Schema } from "./types";
+import { ResolveSchema, Schema } from "./types";
+import { toJSON } from "./utils";
 
-export interface UnionSchema<T extends Schema = Schema> {
+export interface UnionSchema<T extends Schema = Schema> extends Schema {
   __kind: "Union";
-  __resolved: Resolve<T>;
 
   anyOf: T[];
 }
 
+export type ResolveUnionSchema<T extends UnionSchema> = ResolveSchema<T["anyOf"][number]>;
+
 export function createUnionSchema<T extends Schema>(schemas: T[]): UnionSchema<T> {
-  return { __kind: "Union", anyOf: schemas } as UnionSchema<T>;
+  return { __kind: "Union", anyOf: schemas, toJSON };
 }
